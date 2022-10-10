@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.java.Mapper.RoomMapper">
+
+
+    <select id="select" resultType="com.java.pojo.Room">
+        select * from room
+            <where>
+                <if test="roomN != null">
+                    roomN= #{roomN}
+                </if>
+                <if test="roomClass != null and roomClass !='' ">
+                    and roomClass = #{roomClass}
+                </if>
+
+                <if test="roomStatus != null and roomStatus !=''">
+                    and roomStatus = #{roomStatus}
+                </if>
+
+                <if test="bedN != null">
+                    and bedN = #{bedN}
+                </if>
+
+                <if test="money != null and money !=''">
+                    and money = #{money}
+                </if>
+
+                <if test="username != null and username !=''">
+                    and username = #{username}
+                </if>
+            </where>
+    </select>
+
+    <update id="update">
+        update room
+        <set>
+            <if test="roomClass != null and roomClass != ''">
+                roomClass = #{roomClass},
+            </if>
+            <if test="roomStatus !=null and roomStatus != ''">
+                roomStatus = #{roomStatus},
+            </if>
+            <if test="bedN != null">
+                bedN = #{bedN},
+            </if>
+            <if test="money != null and money != ''">
+                money = #{money},
+            </if>
+            <if test="username != null and username != ''">
+                username = #{username}
+            </if>
+        </set>
+        where roomN = #{roomN}
+    </update>
+</mapper>

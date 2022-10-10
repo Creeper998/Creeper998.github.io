@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.java.Mapper.UserMapper">
+
+    <update id="updateUser">
+            update user
+            <set>
+                <if test="id != null and id!=''">
+                    id = #{id},
+                </if>
+                <if test="username != null and username!=''">
+                    username = #{username},
+                </if>
+                <if test="tel !=null and tel!=''">
+                    tel = #{tel},
+                </if>
+                <if test="roomN != null">
+                    roomN = #{roomN},
+                </if>
+            </set>
+                where id=#{id};
+    </update>
+    <select id="select" resultType="com.java.pojo.User">
+        select * from user
+        <where>
+            <if test="id != null and id != ''">
+                id=#{id}
+            </if>
+            <if test="username != null and username != ''">
+               and username=#{username}
+            </if>
+            <if test="tel != null and tel != ''">
+               and tel=#{tel}
+            </if>
+            <if test="roomN != null">
+               and roomN=#{roomN}
+            </if>
+        </where>
+    </select>
+
+</mapper>
